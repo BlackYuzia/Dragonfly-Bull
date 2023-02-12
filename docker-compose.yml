@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  dragonfly:
+    container_name: dragonfly-test
+    hostname: dragonfly-test
+    image: docker.dragonflydb.io/dragonflydb/dragonfly
+    ulimits:
+      memlock: -1
+    command:
+      - "--save_schedule=*:30"
+      - "--dir=/data"
+      - "--dbfilename=dump.rdb"
+    restart: always
+    ports:
+      - "6379:6379"
+  # redis:
+  #   container_name: redis-test
+  #   hostname: redis-test
+  #   image: redis
+  #   restart: always
+  #   ports:
+  #     - "6379:6379"
